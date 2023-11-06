@@ -58,6 +58,13 @@ export const cartSlice = createSlice({
     },
   },
 });
+
+//кастомные селекторы, чтобы не писать одно и то же в разных компонентах
+export const selectCart = (state) => state.cart;
+//единственный полезный селектор
+export const selectCartItemById = (id) => (state) =>
+  state.cart.items.find((obj) => obj.id === id);
+
 // Action creators are generated for each case reducer function
 export const { addItem, deleteItem, minusItem, clearItems } = cartSlice.actions;
 

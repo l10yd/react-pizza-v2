@@ -2,14 +2,14 @@ import React from "react";
 import "../scss/app.scss";
 
 import { useDispatch, useSelector } from "react-redux";
-import { updateFilter } from "../redux/slices/filterSlice";
+import { selectFilter, updateFilter } from "../redux/slices/filterSlice";
 
 function Sort() {
   const [open, setOpen] = React.useState(false);
   const list = { rating: "популярности", price: "цене", title: "алфавиту" };
 
   const sortRef = React.useRef(null);
-  const { sortValue } = useSelector((state) => state.filter);
+  const { sortValue } = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   //закрывает сорт, если жмем на любое место на экране

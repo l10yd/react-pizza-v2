@@ -7,6 +7,7 @@ import { clear, update } from "../../redux/slices/searchSlice";
 import styles from "./Search.module.scss";
 
 const Search = () => {
+  //костыльный стейт для debounce
   const [value, setValue] = React.useState("");
   const dispatch = useDispatch();
   const inputRef = React.useRef();

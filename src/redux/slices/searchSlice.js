@@ -17,6 +17,8 @@ export const searchSlice = createSlice({
   },
 });
 
+export const selectSearch = (state) => state.search;
+
 // Action creators are generated for each case reducer function
 export const { clear, update } = searchSlice.actions;
 

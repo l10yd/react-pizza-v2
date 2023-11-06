@@ -10,8 +10,13 @@ import "../scss/app.scss";
 import Pagination from "../Pagination";
 
 import { useSelector, useDispatch } from "react-redux";
-import { updateFilter, newFilter } from "../redux/slices/filterSlice";
-import { fetchPizzas } from "../redux/slices/pizzaSlice";
+import {
+  updateFilter,
+  newFilter,
+  selectFilter,
+} from "../redux/slices/filterSlice";
+import { fetchPizzas, selectPizza } from "../redux/slices/pizzaSlice";
+import { selectSearch } from "../redux/slices/searchSlice";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -20,11 +25,13 @@ const Home = () => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const { searchValue } = useSelector((state) => state.search);
-  const { sortValue, sortOrder, categoryValue, pageValue } = useSelector(
-    (state) => state.filter
-  );
-  const { items, status } = useSelector((state) => state.pizza);
+  //кастомные селекторы, хранятся в соответствующих слайсах
+  //да просто заменяют state => state.Name
+  //так что их надо делать, если код повторяется в разных компонентах
+  const { searchValue } = useSelector(selectSearch);
+  const { sortValue, sortOrder, categoryValue, pageValue } =
+    useSelector(selectFilter);
+  const { items, status } = useSelector(selectPizza);
 
   //первый рендер - парсим ссылку(если есть) и записываем данные в редакс
   React.useEffect(() => {

@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./Pagination.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
-import { updateFilter } from "../redux/slices/filterSlice";
+import { selectFilter, updateFilter } from "../redux/slices/filterSlice";
 
 const Pagination = () => {
   const pageCount = 3;
-  const { pageValue } = useSelector((state) => state.filter);
+  const { pageValue } = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const pageNumbers = Array.from({ length: pageCount }, (_, i) => i + 1);

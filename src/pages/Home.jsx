@@ -1,7 +1,7 @@
 import React from "react";
 
 import qs from "qs";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
@@ -37,7 +37,6 @@ const Home = () => {
   React.useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
-      console.log("window search", params);
       dispatch(
         newFilter({
           sortValue: params.sortValue,
@@ -47,7 +46,6 @@ const Home = () => {
         })
       );
       isSearch.current = true;
-      console.log("Home cat 1st useEffect", categoryValue);
     }
   }, []);
 

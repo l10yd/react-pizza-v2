@@ -1,0 +1,30 @@
+.root {
+  li {
+    display: inline-block;
+  }
+  button {
+    display: inline-block;
+    background-color: transparent;
+    color: #fe5f1e;
+    padding: 10px;
+    border: 1px solid #fe5f1e;
+    border-radius: 30px;
+    margin-right: 10px;
+    width: 42px;
+    height: 42px;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #fe5f1e;
+      color: #fff;
+    }
+  }
+}
+
+button.selected {
+  /* Глобальные стили для кнопки с классом "selected" */
+  /* Например, вы можете изменить цвет фона и текста здесь */
+  background-color: #fe5f1e;
+  color: #fff;
+}

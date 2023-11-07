@@ -2,11 +2,11 @@ import React from "react";
 import "../scss/app.scss";
 
 import { useDispatch, useSelector } from "react-redux";
-import { updateFilter } from "../redux/slices/filterSlice";
+import { selectCategory, updateFilter } from "../redux/slices/filterSlice";
 
-function Categories() {
+const Categories: React.FC = () => {
   const dispatch = useDispatch();
-  const category = useSelector((state) => state.filter.categoryValue);
+  const category = useSelector(selectCategory);
 
   const categories = [
     "Все",
@@ -38,6 +38,6 @@ function Categories() {
       </ul>
     </div>
   );
-}
+};
 
 export default Categories;

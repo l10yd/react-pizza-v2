@@ -4,10 +4,10 @@ import qs from "qs";
 import { useNavigate, Link } from "react-router-dom";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
-import PizzaBlock from "../components/PizzaBlock";
+import PizzaBlock from "../components/PizzaBlock/index";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import "../scss/app.scss";
-import Pagination from "../Pagination";
+import Pagination from "../Pagination/index";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -18,7 +18,7 @@ import {
 import { fetchPizzas, selectPizza } from "../redux/slices/pizzaSlice";
 import { selectSearch } from "../redux/slices/searchSlice";
 
-const Home = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -33,10 +33,24 @@ const Home = () => {
     useSelector(selectFilter);
   const { items, status } = useSelector(selectPizza);
 
+  //типы для парсинга ссылки - params
+  interface UrlParams {
+    sortValue: string;
+    sortOrder: string;
+    categoryValue: string;
+    pageValue: string;
+  }
+
   //первый рендер - парсим ссылку(если есть) и записываем данные в редакс
   React.useEffect(() => {
     if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
+      const params: UrlParams = {
+        sortValue: "",
+        sortOrder: "",
+        categoryValue: "",
+        pageValue: "",
+        ...qs.parse(window.location.search.substring(1)),
+      };
       dispatch(
         newFilter({
           sortValue: params.sortValue,
@@ -52,6 +66,7 @@ const Home = () => {
   //без try catch т.к. это обрабатывается в redux через status="loading" и тд
   const getPizzas = async () => {
     dispatch(
+      //@ts-ignore
       fetchPizzas({
         sortValue,
         sortOrder,
@@ -103,7 +118,9 @@ const Home = () => {
           {" "}
           {status === "loading"
             ? [...new Array(4)].map((_, index) => <Skeleton key={index} />)
-            : items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}{" "}
+            : items.map((obj: any) => (
+                <PizzaBlock key={obj.id} {...obj} />
+              ))}{" "}
         </div>
       )}
 

@@ -1,35 +1,37 @@
-import React from "react";
-import { debounce } from "lodash";
-
+import React, { ChangeEvent } from "react";
+import debounce from "lodash/debounce";
 import { useDispatch } from "react-redux";
 import { clear, update } from "../../redux/slices/searchSlice";
 
 import styles from "./Search.module.scss";
 
-const Search = () => {
+const Search: React.FC = () => {
   //костыльный стейт для debounce
   const [value, setValue] = React.useState("");
   const dispatch = useDispatch();
-  const inputRef = React.useRef();
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const onClickClear = () => {
     dispatch(clear());
     setValue("");
-    inputRef.current.focus();
+    //оператор опциональной последовательности
+    //? - если есть current, двигаемся дальше
+    //без этого typescript ругается, т.к. может быть null
+    inputRef.current?.focus();
   };
 
   //обновляет данные из поисковой строки через 1 сек
   //чтобы не ддосить бэкенд при каждом обновлении инпута
   //без колбэка функция перевызывается при каждом рендере (не работает)
-  const updateSearch = React.useCallback(
-    debounce((text) => {
+  const updateSearch: (text: string) => void = React.useCallback(
+    debounce((text: string) => {
       dispatch(update(text));
     }, 1000),
     []
   );
 
   //сразу меняет содержимое поисковой строки
-  const onChangeInput = (event) => {
+  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     //вызываем обновление redux с задержкой
     updateSearch(event.target.value);

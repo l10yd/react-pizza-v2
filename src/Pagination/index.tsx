@@ -4,14 +4,14 @@ import styles from "./Pagination.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFilter, updateFilter } from "../redux/slices/filterSlice";
 
-const Pagination = () => {
+const Pagination: React.FC = () => {
   const pageCount = 3;
   const { pageValue } = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const pageNumbers = Array.from({ length: pageCount }, (_, i) => i + 1);
 
-  const handlePageChange = (newPage) => {
+  const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= pageCount) {
       dispatch(updateFilter({ pageValue: newPage }));
     }

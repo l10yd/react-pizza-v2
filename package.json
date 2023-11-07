@@ -5,12 +5,14 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@types/jest": "^29.5.7",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20.8.10",
     "@types/react": "^18.2.36",
     "@types/react-dom": "^18.2.14",
     "axios": "^1.6.0",
     "cra-template": "1.2.0",
     "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8",
     "qs": "^6.11.2",
     "react": "^18.2.0",
     "react-content-loader": "^6.2.1",
@@ -20,6 +22,9 @@
     "react-router-dom": "^6.17.0",
     "react-scripts": "5.0.1",
     "sass": "^1.69.4",
+    "typescript": "^5.2.2"
+  },
+  "overrides": {
     "typescript": "^5.2.2"
   },
   "scripts": {

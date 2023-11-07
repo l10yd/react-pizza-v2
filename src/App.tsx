@@ -2,11 +2,10 @@ import React from "react";
 
 import { Routes, Route, Outlet } from "react-router-dom";
 
-import Header from "./components/Header";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Cart from "./pages/Cart";
-import FullPizza from "./pages/FullPizza";
+import FullPizza from "./pages/FullPizza.tsx";
 
 import "./scss/app.scss";
 import MainLayout from "./layouts/MainLayout";

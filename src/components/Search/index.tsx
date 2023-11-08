@@ -37,8 +37,13 @@ const Search: React.FC = () => {
     updateSearch(event.target.value);
   };
 
+  //для примера - типизация для клика мыши на весь элемент
+  const onClickDiv = (event: React.MouseEvent<HTMLDivElement>) => {
+    //console.log(event);
+  };
+
   return (
-    <div className={styles.root}>
+    <div onClick={onClickDiv} className={styles.root}>
       <svg
         className={styles.icon}
         height="32px"

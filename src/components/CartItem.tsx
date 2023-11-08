@@ -1,6 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addItem, minusItem, deleteItem } from "../redux/slices/cartSlice";
+import {
+  addItem,
+  minusItem,
+  deleteItem,
+  CartItem,
+} from "../redux/slices/cartSlice";
 
 //кастомный тип
 type CartItemProps = {
@@ -10,10 +15,11 @@ type CartItemProps = {
   price: number;
   count: number;
   imageUrl: string;
+  size: number;
 };
 
 //используется для функционального компонента
-const CartItem: React.FC<CartItemProps> = ({
+const CartItemBlock: React.FC<CartItemProps> = ({
   id,
   title,
   type,
@@ -23,17 +29,13 @@ const CartItem: React.FC<CartItemProps> = ({
 }) => {
   const dispatch = useDispatch();
 
-  const onClickPlus = () => {
-    dispatch(
-      //только id, потому что так работает экшн addItem
-      addItem({
-        id,
-      })
-    );
+  const onClickPlus = (event: React.MouseEvent<HTMLDivElement>) => {
+    //просто в обход всего объясняем ts, что {id} является CartItem
+    dispatch(addItem({ id } as CartItem));
   };
 
-  const onClickMinus = () => {
-    dispatch(minusItem({ id }));
+  const onClickMinus = (event: React.MouseEvent<HTMLDivElement>) => {
+    dispatch(minusItem({ id } as CartItem));
   };
 
   const onClickRemove = () => {
@@ -51,6 +53,7 @@ const CartItem: React.FC<CartItemProps> = ({
       </div>
       <div className="cart__item-count">
         <div
+          id={id}
           onClick={onClickMinus}
           className="button button--outline button--circle cart__item-count-minus"
         >
@@ -73,6 +76,7 @@ const CartItem: React.FC<CartItemProps> = ({
         </div>
         <b>{count}</b>
         <div
+          id={id}
           onClick={onClickPlus}
           className="button button--outline button--circle cart__item-count-plus"
         >
@@ -124,4 +128,4 @@ const CartItem: React.FC<CartItemProps> = ({
   );
 };
 
-export default CartItem;
+export default CartItemBlock;

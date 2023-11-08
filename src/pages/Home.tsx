@@ -10,6 +10,7 @@ import "../scss/app.scss";
 import Pagination from "../Pagination/index";
 
 import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch } from "../redux/store";
 import {
   updateFilter,
   newFilter,
@@ -19,8 +20,11 @@ import { fetchPizzas, selectPizza } from "../redux/slices/pizzaSlice";
 import { selectSearch } from "../redux/slices/searchSlice";
 
 const Home: React.FC = () => {
+  //наводит курсор обратно в поиск после очистки (нажать крестик)
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  //кастомный диспатч, чтобы диспатчить только эшны из стора
+  //а также асинхронные экшны
+  const dispatch = useAppDispatch();
 
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
@@ -66,7 +70,6 @@ const Home: React.FC = () => {
   //без try catch т.к. это обрабатывается в redux через status="loading" и тд
   const getPizzas = async () => {
     dispatch(
-      //@ts-ignore
       fetchPizzas({
         sortValue,
         sortOrder,

@@ -1,11 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import {
-  addItem,
-  minusItem,
-  deleteItem,
-  CartItem,
-} from "../redux/slices/cartSlice";
+import { addItem, minusItem, deleteItem } from "../redux/cart/slice";
+import { CartItem } from "../redux/cart/types";
 
 //кастомный тип
 type CartItemProps = {
@@ -30,7 +26,7 @@ const CartItemBlock: React.FC<CartItemProps> = ({
   const dispatch = useDispatch();
 
   const onClickPlus = (event: React.MouseEvent<HTMLDivElement>) => {
-    //просто в обход всего объясняем ts, что {id} является CartItem
+    //просто в обход всего объясняем ts, что объект {id} является CartItem
     dispatch(addItem({ id } as CartItem));
   };
 

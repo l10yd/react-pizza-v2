@@ -1,7 +1,7 @@
 import React from "react";
 
 import qs from "qs";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock/index";
@@ -9,15 +9,13 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 import "../scss/app.scss";
 import Pagination from "../Pagination/index";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useAppDispatch } from "../redux/store";
-import {
-  updateFilter,
-  newFilter,
-  selectFilter,
-} from "../redux/slices/filterSlice";
-import { fetchPizzas, selectPizza } from "../redux/slices/pizzaSlice";
-import { selectSearch } from "../redux/slices/searchSlice";
+import { newFilter } from "../redux/filter/slice";
+import { selectFilter } from "../redux/filter/selectors";
+import { fetchPizzas } from "../redux/pizza/slice";
+import { selectPizza } from "../redux/pizza/selectors";
+import { selectSearch } from "../redux/search/selectors";
 
 const Home: React.FC = () => {
   //наводит курсор обратно в поиск после очистки (нажать крестик)

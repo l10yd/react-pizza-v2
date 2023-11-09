@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from "react";
 import debounce from "lodash/debounce";
 import { useDispatch } from "react-redux";
-import { clear, update } from "../../redux/slices/searchSlice";
+import { clear, update } from "../../redux/search/slice";
 
 import styles from "./Search.module.scss";
 

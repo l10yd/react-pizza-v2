@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 //берется дефолтный экспорт, назови как хочешь
-import filter from "./slices/filterSlice";
-import search from "./slices/searchSlice";
-import cart from "./slices/cartSlice";
-import pizza from "./slices/pizzaSlice";
+import filter from "./filter/slice";
+import search from "./search/slice";
+import cart from "./cart/slice";
+import pizza from "./pizza/slice";
 import { useDispatch } from "react-redux";
 
 export const store = configureStore({

@@ -2,7 +2,8 @@ import React from "react";
 import "../scss/app.scss";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectFilter, updateFilter } from "../redux/slices/filterSlice";
+import { selectFilter } from "../redux/filter/selectors";
+import { updateFilter } from "../redux/filter/slice";
 
 const Sort: React.FC = () => {
   const [open, setOpen] = React.useState(false);

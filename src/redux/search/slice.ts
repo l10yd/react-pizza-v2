@@ -1,9 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-
-type SearchSliceState = {
-  searchValue: string;
-};
+import { SearchSliceState } from "./types";
 
 const initialState: SearchSliceState = {
   searchValue: "",
@@ -21,8 +18,6 @@ export const searchSlice = createSlice({
     },
   },
 });
-
-export const selectSearch = (state: RootState) => state.search;
 
 // Action creators are generated for each case reducer function
 export const { clear, update } = searchSlice.actions;

@@ -1,14 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../store";
-
-//кастомный тип для стейта этого слайса
-type FilterSliceState = {
-  categoryValue: number;
-  sortValue: string;
-  sortOrder: string;
-  pageValue: number;
-};
+import { FilterSliceState } from "./types";
 
 const initialState: FilterSliceState = {
   categoryValue: 0,
@@ -32,9 +25,6 @@ export const filterSlice = createSlice({
     },
   },
 });
-
-export const selectFilter = (state: RootState) => state.filter;
-export const selectCategory = (state: RootState) => state.filter.categoryValue;
 
 // Action creators are generated for each case reducer function
 export const { updateFilter, newFilter } = filterSlice.actions;
